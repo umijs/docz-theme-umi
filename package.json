@@ -12,8 +12,10 @@
     "package.json",
     "README.md"
   ],
+  "repository": "umijs/docz-theme-umi",
   "scripts": {
-    "build": "umi-lib build --esm babel"
+    "build": "umi-lib build --esm babel",
+    "prepublishOnly": "np --no-cleanup --yolo --no-publish"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -58,6 +60,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0",
+    "np": "^4.0.2",
     "umi-library": "^1.3.2"
   }
 }
