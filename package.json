@@ -14,6 +14,7 @@
   ],
   "repository": "umijs/docz-theme-umi",
   "scripts": {
+    "dev": "umi-lib build --esm babel --watch",
     "build": "umi-lib build --esm babel",
     "prepublishOnly": "np --no-cleanup --yolo --no-publish"
   },

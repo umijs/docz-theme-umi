@@ -92,6 +92,18 @@ const FooterLink = styled.a`
   margin-left: 5px;
 `
 
+const BuiltWithLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const BuiltWithLogo = styled.img`
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+`
+
 const FooterLogo = styled(Docz)<{ width: number }>`
   fill: ${sidebarText};
 `
@@ -123,6 +135,12 @@ export const Sidebar: SFC = () => {
   const isDesktop = windowSize.outerWidth >= breakpoints.desktop
   const prevIsDesktop = usePrevious(isDesktop)
 
+  const browserLanguage: string = window.navigator.language
+  let emptyPlaceholder = 'No documents found.'
+  if (browserLanguage === 'zh-CN') {
+    emptyPlaceholder = '未找到相应组件'
+  }
+
   useEffect(() => {
     if (!hidden && !prevIsDesktop && isDesktop) {
       setHidden(true)
@@ -145,13 +163,11 @@ export const Sidebar: SFC = () => {
 
   const builtWith = process.env.BIGFISH_VERSION
     ? [
-      'Bigfish',
-      'https://bigfish-pre.antfin-inc.com/',
-    ]
-    : [
-      'umi-library',
-      'https://github.com/umijs/umi/tree/master/packages/umi-library',
-    ];
+        'Bigfish',
+        'https://bigfish-pre.antfin-inc.com/',
+        'https://gw-office.alipayobjects.com/basement_prod/c83c53ab-515e-43e2-85d0-4d0da16f11ef.svg',
+      ]
+    : ['umi-library', 'https://github.com/umijs/umi/tree/master/packages/umi-library', '']
 
   return (
     <Fragment>
@@ -162,7 +178,7 @@ export const Sidebar: SFC = () => {
           <Search onSearch={setQuery} />
 
           {menus && menus.length === 0 ? (
-            <Empty>No documents found.</Empty>
+            <Empty>{emptyPlaceholder}</Empty>
           ) : (
             <Menus>
               {menus &&
@@ -179,7 +195,10 @@ export const Sidebar: SFC = () => {
           <Footer>
             Built with
             <span>&nbsp;</span>
-            <a href={builtWith[1]} target="_blank">{builtWith[0]}</a>
+            <BuiltWithLink href={builtWith[1]} target="_blank">
+              {builtWith[2] ? <BuiltWithLogo src={builtWith[2]} /> : null}
+              {builtWith[0]}
+            </BuiltWithLink>
             <span>&nbsp;</span>
             and
             <FooterLink href="https://docz.site" target="_blank">

@@ -38,15 +38,23 @@ interface SearchProps {
   onSearch: (value: string) => void
 }
 
-export const Search: SFC<SearchProps> = ({ onSearch }) => (
-  <Wrapper>
-    <Icon />
-    <Input
-      type="text"
-      placeholder="Search here..."
-      onChange={(ev: any) => {
-        onSearch && onSearch(ev.target.value)
-      }}
-    />
-  </Wrapper>
-)
+export const Search: SFC<SearchProps> = ({ onSearch }) => {
+  const browserLanguage: string = window.navigator.language
+  let placeholder: string = 'Search here...'
+  if (browserLanguage === 'zh-CN') {
+    placeholder = '在组件库中搜索...'
+  }
+
+  return (
+    <Wrapper>
+      <Icon />
+      <Input
+        type="text"
+        placeholder={placeholder}
+        onChange={(ev: any) => {
+          onSearch && onSearch(ev.target.value)
+        }}
+      />
+    </Wrapper>
+  )
+}
