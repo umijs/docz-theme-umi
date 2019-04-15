@@ -14,7 +14,7 @@ if (process.env.BIGFISH_VERSION) {
   const link: HTMLLinkElement = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'icon';
-  link.href = "https://gw-office.alipayobjects.com/basement_prod/7e9551ab-bbaf-48fc-9253-9470e6593d2f.png";
+  link.href = "https://gw-office.alipayobjects.com/basement_prod/c83c53ab-515e-43e2-85d0-4d0da16f11ef.svg";
   const head = document.getElementsByTagName('head')[0]
   head.insertBefore(link, head.firstChild);
 }
