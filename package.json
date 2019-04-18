@@ -23,7 +23,7 @@
     "@tippy.js/react": "^2.1.2",
     "codemirror": "^5.45.0",
     "copy-text-to-clipboard": "^2.0.0",
-    "docz": "1.0.0-rc.8",
+    "docz": "^1.0.4",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.2",
     "lodash": "^4.17.11",
