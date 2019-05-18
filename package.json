@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-umi",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The umi theme of docz.",
   "license": "MIT",
   "main": "es/index.js",
