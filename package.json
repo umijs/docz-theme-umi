@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "father build --esm babel --watch",
     "build": "father build --esm babel",
-    "prepublishOnly": "np --no-cleanup --yolo --no-publish"
+    "prepublishOnly": "npm run build && np --no-cleanup --yolo --no-publish"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
