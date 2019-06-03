@@ -168,7 +168,7 @@ export const Sidebar: SFC = () => {
         'https://bigfish.antfin-inc.com/',
         'https://gw-office.alipayobjects.com/basement_prod/c83c53ab-515e-43e2-85d0-4d0da16f11ef.svg',
       ]
-    : ['umi-library', 'https://github.com/umijs/umi/tree/master/packages/umi-library', '']
+    : ['father', 'https://github.com/umijs/father', '']
 
   return (
     <Fragment>
