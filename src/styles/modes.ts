@@ -6,7 +6,7 @@ export const light = {
   text: colors.grayDark,
   link: colors.blue,
   footerText: colors.grayDark,
-  sidebarBg: colors.grayExtraLight,
+  sidebarBg: colors.white,
   sidebarText: colors.dark,
   sidebarHighlight: null,
   sidebarBorder: colors.grayLight,

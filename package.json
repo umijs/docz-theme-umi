@@ -21,6 +21,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "@tippy.js/react": "^2.1.2",
+    "antd": "^3.19.2",
     "codemirror": "^5.45.0",
     "copy-text-to-clipboard": "^2.0.0",
     "docz": "^1.0.4",
@@ -58,10 +59,11 @@
     "@types/react-dom": "^16.8.3",
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^4.1.12",
+    "babel-plugin-import": "^1.12.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "^1.10.0",
-    "np": "^4.0.2",
-    "father": "^2.1.0"
+    "father": "^2.1.0",
+    "np": "^4.0.2"
   }
 }

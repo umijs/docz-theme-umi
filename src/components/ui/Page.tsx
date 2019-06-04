@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SFC, Fragment } from 'react'
-import { PageProps, useConfig } from 'docz'
+import { PageProps, useConfig, Link } from 'docz'
 import Edit from 'react-feather/dist/icons/edit-2'
 import styled from 'styled-components'
 
@@ -19,11 +19,10 @@ const Wrapper = styled.div`
 
 export const Container = styled.div`
   box-sizing: border-box;
-  margin: 0 auto;
 
   ${mq({
-    width: ['100%', '100%', 920],
-    padding: ['20px', '0 40px 40px'],
+    width: ['100%', '100%', '90%'],
+    padding: ['20px', '0 24px 24px'],
   })}
 
   ${get('styles.container')};
@@ -61,11 +60,34 @@ const EditIcon = styled(Edit)<{ width: number }>`
   margin-right: 5px;
 `
 
+const AnchorWrapper = styled.div`
+  ${mq({
+    display: ['none', 'none', 'none', 'unset'],
+  })}
+
+  position: fixed;
+  right: 24px;
+  > div {
+    border-left: 1px solid #f0f0f0;
+    padding-left: 16px;
+    line-height: 20px;
+  }
+
+  > div:nth-child(n + 2) {
+    padding-top: 8px;
+  }
+`
+
+const LinkWrapper = styled(Link)`
+  font-size: 12px;
+`
+
 export const Page: SFC<PageProps> = ({
   children,
-  doc: { link, fullpage, edit = true },
+  doc: { link, fullpage, edit = true, headings },
 }) => {
   const { repository } = useConfig()
+
   const content = (
     <Fragment>
       {link && edit && (
@@ -77,11 +99,27 @@ export const Page: SFC<PageProps> = ({
     </Fragment>
   )
 
+  // 右侧锚点只跟踪 h2
+  const anchors = headings.filter(v => v.depth === 2)
+  const { pathname, hash } = location
+
   return (
     <Main>
       {repository && <GithubLink repository={repository} />}
       {!fullpage && <Sidebar />}
       <Wrapper>{fullpage ? content : <Container>{content}</Container>}</Wrapper>
+      <AnchorWrapper>
+        {anchors.map(a => (
+          <div key={a.value}>
+            <LinkWrapper
+              to={`${pathname}#${a.slug}`}
+              style={{ color: hash === `#${a.slug}` ? '#1890ff' : 'rgba(0,0,0,.65)' }}
+            >
+              {a.slug}
+            </LinkWrapper>
+          </div>
+        ))}
+      </AnchorWrapper>
     </Main>
   )
 }

@@ -18,6 +18,13 @@
       {
         "ssr": false
       }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true,
+      }
     ]
   ]
 }
