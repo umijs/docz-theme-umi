@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   & ~ & {
-    margin-top: 20px;
+    margin-top: 8px;
   }
 `
 
@@ -20,10 +20,10 @@ const Title = styled.div`
 `
 
 const PropName = styled.span`
-  background: ${get('colors.sidebarBg')};
+  background: #f1f1f1;
+  border-radius: 0px;
   color: ${get('colors.primary')};
   padding: 5px 10px;
-  border-radius: 4px 4px 0 0;
   font-size: 16px;
   font-weight: 500;
 
@@ -46,7 +46,7 @@ const PropDefaultValue = styled(PropType)`
 
 const PropRequired = styled(PropType)`
   flex: 1;
-  text-align: right;
+  text-align: left;
   background: transparent;
   color: ${get('colors.blockquoteColor')};
   opacity: 0.5;

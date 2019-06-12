@@ -67,6 +67,7 @@ const AnchorWrapper = styled.div`
 
   position: fixed;
   right: 24px;
+  top: 24px;
   > div {
     border-left: 1px solid #f0f0f0;
     padding-left: 16px;
