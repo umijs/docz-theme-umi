@@ -4,19 +4,6 @@ The umi theme of [docz](https://docz.site).
 
 ![](http://ww4.sinaimg.cn/large/006tNc79ly1g3yhyfm6rij31610u0neu.jpg)
 
-## Dark Mode
-
-To change your project to use a darker version of default theme, just set your `doczrc.js` like that:
-
-```js
-// doczrc.js
-export default {
-  themeConfig: {
-    mode: 'dark',
-  },
-}
-```
-
 ## Changing your logo
 
 Use your own logo by changing the `logo` property:
