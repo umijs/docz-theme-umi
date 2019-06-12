@@ -6,6 +6,8 @@ const MenuContainer = styled.div`
   width: 100%;
   padding: 20px 0 24px 24px;
   line-height: 22px;
+  overflow-y: auto;
+  flex: 1;
 `
 
 const MenuTitle = styled.div`
