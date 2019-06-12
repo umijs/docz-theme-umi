@@ -2,7 +2,7 @@
 
 The umi theme of [docz](https://docz.site).
 
-![](https://cdn-std.dprcdn.net/files/acc_649651/xZt5zr)
+![](http://ww4.sinaimg.cn/large/006tNc79ly1g3yhyfm6rij31610u0neu.jpg)
 
 ## Dark Mode
 
