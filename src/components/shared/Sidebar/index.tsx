@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { get } from '@utils/theme'
 import { mq, breakpoints } from '@styles/responsive'
 
+import { Logo } from '../Logo'
 import CustomSearch from '../Search/CustomSearch'
 import { Hamburger } from './Hamburger'
 import CustomMenu from './CustomMenu'
@@ -113,6 +114,7 @@ export const Sidebar: SFC = () => {
       <Wrapper opened={hidden}>
         <Content>
           <Hamburger opened={!hidden} onClick={handleSidebarToggle} />
+          {process.env.BIGFISH_VERSION ? null : <Logo showBg={!hidden} />}
           <CustomSearch onSearch={setQuery} />
 
           {menus && menus.length === 0 ? (
