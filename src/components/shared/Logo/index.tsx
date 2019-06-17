@@ -15,6 +15,7 @@ const sidebarPrimary = get('colors.sidebarPrimary')
 const primaryColor = get('colors.primary')
 
 const Wrapper = styled.div<WrapperProps>`
+  margin-top: -24px;
   position: relative;
   display: flex;
   flex-direction: column;
