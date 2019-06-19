@@ -15,13 +15,16 @@ const Wrapper = styled.div`
   background: ${get('colors.background')};
   min-width: 0;
   position: relative;
+
+  display: flex;
+  flex-direction: row;
 `
 
 export const Container = styled.div`
   box-sizing: border-box;
 
   ${mq({
-    width: ['100%', '100%', '90%'],
+    width: ['100%', '100%', '100%'],
     padding: ['20px', '0 24px 24px'],
   })}
 
@@ -60,23 +63,29 @@ const EditIcon = styled(Edit)<{ width: number }>`
   margin-right: 5px;
 `
 
+interface AnchorProps {
+  hash: string
+  slug: string
+}
+
 const AnchorWrapper = styled.div`
-  ${mq({
-    display: ['none', 'none', 'none', 'unset'],
-  })}
+  position: relative;
+  padding-top: 24px;
+  min-width: 224px;
 
-  position: fixed;
-  right: 24px;
-  top: 24px;
   > div {
-    border-left: 1px solid #f0f0f0;
-    padding-left: 16px;
-    line-height: 20px;
+    position: fixed;
   }
+`
 
-  > div:nth-child(n + 2) {
-    padding-top: 8px;
-  }
+const Anchor = styled.div<AnchorProps>`
+  border-left: 1px solid #f0f0f0;
+  border-color: ${props => (props.hash.slice(1) === props.slug ? get('colors.blue') : '#f0f0f0')};
+  padding-left: 16px;
+  line-height: 20px;
+  min-width: 224px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 `
 
 const LinkWrapper = styled(Link)`
@@ -108,19 +117,29 @@ export const Page: SFC<PageProps> = ({
     <Main>
       {repository && <GithubLink repository={repository} />}
       {!fullpage && <Sidebar />}
-      <Wrapper>{fullpage ? content : <Container>{content}</Container>}</Wrapper>
-      <AnchorWrapper>
-        {anchors.map(a => (
-          <div key={a.value}>
-            <LinkWrapper
-              to={`${pathname}#${a.slug}`}
-              style={{ color: hash === `#${a.slug}` ? '#1890ff' : 'rgba(0,0,0,.65)' }}
-            >
-              {a.slug}
-            </LinkWrapper>
-          </div>
-        ))}
-      </AnchorWrapper>
+      <Wrapper>
+        {fullpage ? (
+          content
+        ) : (
+          <>
+            <Container>{content}</Container>
+            <AnchorWrapper>
+              <div>
+                {anchors.map(a => (
+                  <Anchor key={a.slug} hash={hash} slug={a.slug}>
+                    <LinkWrapper
+                      to={`${pathname}#${a.slug}`}
+                      style={{ color: hash === `#${a.slug}` ? '#1890ff' : 'rgba(0,0,0,.65)' }}
+                    >
+                      {a.value}
+                    </LinkWrapper>
+                  </Anchor>
+                ))}
+              </div>
+            </AnchorWrapper>
+          </>
+        )}
+      </Wrapper>
     </Main>
   )
 }
