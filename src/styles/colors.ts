@@ -8,6 +8,5 @@ export const dark = '#13161F'
 
 export const blueLight = '#e9f2fa'
 export const blue = '#1890ff'
-// export const blue = '#0B5FFF'
 export const skyBlue = '#1FB6FF'
 export const negative = '#EB4D4B'
