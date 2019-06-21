@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuItem, Link, useDocs, Entry } from 'docz'
+import { Link, useDocs, Entry } from 'docz'
 import styled from 'styled-components'
 
 const MenuContainer = styled.div`
@@ -10,14 +10,7 @@ const MenuContainer = styled.div`
   flex: 1;
 `
 
-const MenuTitle = styled.div`
-  color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
-  font-size: 14px;
-`
-
 const Menu = styled.div`
-  margin-top: 24px;
   width: 100%;
 `
 
@@ -103,7 +96,6 @@ const CustomMenu: React.SFC<CustomMenuProps> = ({ query }) => {
 
   return (
     <MenuContainer>
-      <MenuTitle>Components</MenuTitle>
       <Menu>
         {docsArrangedInMenu &&
           docsArrangedInMenu.map((item: ArrangedDoc) =>

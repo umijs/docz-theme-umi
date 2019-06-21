@@ -4,6 +4,46 @@ The umi theme of [docz](https://docz.site).
 
 ![](http://ww4.sinaimg.cn/large/006tNc79ly1g3yhyfm6rij31610u0neu.jpg)
 
+## Sorting your documents
+
+You can sort your documents by setting the `order` property in `*.mdx`.
+
+```mdx
+---
+name: BarComonent
+subName: Bar Component
+route: /bar
+order: 1
+---
+
+```
+
+Also, you can group your documents by setting the `menu` property.
+
+```mdx
+---
+name: FooComonent
+subName: Foo Component
+route: /foo
+menu: Basic Usage
+menuOrder: 1
+---
+
+```
+
+```mdx
+---
+name: AdvanceFooComonent
+subName: Advanced Foo Component
+route: /foo-advance
+menu: Advanced Usage
+menuOrder: 2
+---
+
+```
+
+By sorting multiple documents and menus, `order` is prior to `menuOrder`.
+
 ## Changing your logo
 
 Use your own logo by changing the `logo` property:
