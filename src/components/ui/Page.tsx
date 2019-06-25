@@ -20,11 +20,11 @@ const Wrapper = styled.div`
   flex-direction: row;
 `
 
-export const Container = styled.div`
+export const Container = styled.div<{ fullpage?: boolean }>`
   box-sizing: border-box;
 
-  ${mq({
-    width: ['100%', '100%', '100%'],
+  ${props => mq({
+    width: props.fullpage ? ['100%', '100%', '100%'] : ['100%', 'calc(100% - 224px)', 'calc(100% - 224px)'],
     padding: ['20px', '0 24px 24px'],
   })}
 
@@ -119,7 +119,7 @@ export const Page: SFC<PageProps> = ({
       {!fullpage && <Sidebar />}
       <Wrapper>
         {fullpage ? (
-          content
+          <Container fullpage>{content}</Container>
         ) : (
           <>
             <Container>{content}</Container>

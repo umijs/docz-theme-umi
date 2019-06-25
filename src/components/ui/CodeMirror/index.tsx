@@ -17,6 +17,7 @@ import 'codemirror/mode/css/css'
 import 'codemirror/addon/edit/matchbrackets'
 import 'codemirror/addon/edit/closetag'
 import 'codemirror/addon/fold/xml-fold'
+import 'codemirror/lib/codemirror.css';
 
 const Scrollbar = styled(PerfectScrollbar)`
   overflow: auto;
@@ -108,7 +109,7 @@ const CodeMirror: SFC<any> = props => {
 
       // Don't refresh if no height (CodeMirror is not visible) or
       // Don't refresh if same height
-      if (hasNoHeight || previousEditor === currentHeight) return
+      if (hasNoHeight || previousEditor.current === currentHeight) return
       refreshCodeMirror()
       previousEditor.current = editor.current.getScrollInfo().height || 0
     })
@@ -117,12 +118,12 @@ const CodeMirror: SFC<any> = props => {
   useEffect(() => {
     forceUpdateCodeMirror()
     return () => clearForceUpdateCodeMirror()
-  }, [])
+  }, [previousEditor.current])
 
   return (
     <React.Fragment>
       <ScrollbarStyles />
-      <Scrollbar option={scrollbarOpts} linesToScroll={linesToScroll}>
+      <Scrollbar options={scrollbarOpts} linesToScroll={linesToScroll}>
         <EditorStyled {...editorProps} />
       </Scrollbar>
     </React.Fragment>
