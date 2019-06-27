@@ -23,10 +23,13 @@ const Wrapper = styled.div`
 export const Container = styled.div<{ fullpage?: boolean }>`
   box-sizing: border-box;
 
-  ${props => mq({
-    width: props.fullpage ? ['100%', '100%', '100%'] : ['100%', 'calc(100% - 224px)', 'calc(100% - 224px)'],
-    padding: ['20px', '0 24px 24px'],
-  })}
+  ${props =>
+    mq({
+      width: props.fullpage
+        ? ['100%', '100%', '100%']
+        : ['100%', 'calc(100% - 113px)', 'calc(100% - 113px)'],
+      padding: ['20px', '0 24px 24px'],
+    })}
 
   ${get('styles.container')};
 `
@@ -71,7 +74,6 @@ interface AnchorProps {
 const AnchorWrapper = styled.div`
   position: relative;
   padding-top: 24px;
-  min-width: 224px;
 
   > div {
     position: fixed;
@@ -81,11 +83,15 @@ const AnchorWrapper = styled.div`
 const Anchor = styled.div<AnchorProps>`
   border-left: 1px solid #f0f0f0;
   border-color: ${props => (props.hash.slice(1) === props.slug ? get('colors.blue') : '#f0f0f0')};
-  padding-left: 16px;
   line-height: 20px;
-  min-width: 224px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding: 4px 16px;
+  > a {
+    width: 80px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `
 
 const LinkWrapper = styled(Link)`
