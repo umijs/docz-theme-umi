@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "@rehooks/local-storage": "^1.6.0",
     "@tippy.js/react": "^2.1.2",
     "antd": "^3.19.2",
     "codemirror": "^5.45.0",
@@ -27,6 +28,7 @@
     "docz": "^1.0.4",
     "facepaint": "^1.2.1",
     "hotkeys-js": "^3.6.2",
+    "intersection-observer": "^0.7.0",
     "lodash": "^4.17.11",
     "polished": "^3.2.0",
     "prop-types": "15.7.2",
@@ -37,6 +39,7 @@
     "react-feather": "^1.1.6",
     "react-live": "1.12.0",
     "react-perfect-scrollbar": "^1.4.4",
+    "scrollama": "^2.0.0",
     "styled-components": "^4.2.0"
   },
   "peerDependencies": {

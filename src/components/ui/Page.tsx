@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { SFC, Fragment } from 'react'
+import React, { SFC, Fragment, useEffect, useState, useRef } from 'react'
 import { PageProps, useConfig, Link } from 'docz'
 import Edit from 'react-feather/dist/icons/edit-2'
 import styled from 'styled-components'
@@ -67,8 +66,9 @@ const EditIcon = styled(Edit)<{ width: number }>`
 `
 
 interface AnchorProps {
-  hash: string
   slug: string
+  isCurrent: boolean
+  depth: number
 }
 
 const AnchorWrapper = styled.div`
@@ -82,9 +82,9 @@ const AnchorWrapper = styled.div`
 
 const Anchor = styled.div<AnchorProps>`
   border-left: 1px solid #f0f0f0;
-  border-color: ${props => (props.hash.slice(1) === props.slug ? get('colors.blue') : '#f0f0f0')};
+  border-color: ${props => (props.isCurrent ? get('colors.blue') : '#f0f0f0')};
   line-height: 20px;
-  padding: 4px 16px;
+  padding: ${props => (props.depth === 2 ? '4px 16px' : '4px 16px 4px 28px')};
   > a {
     width: 80px;
     display: block;
@@ -104,6 +104,34 @@ export const Page: SFC<PageProps> = ({
 }) => {
   const { repository } = useConfig()
 
+  // 右侧锚点只跟踪 h2 和 h3
+  const anchors = headings.filter(v => [2, 3].includes(v.depth))
+  const { pathname, hash } = location
+
+  const [currentSlug, setCurrentSlug] = useState()
+  const mounted = useRef(false)
+
+  const handler = () => {
+    if (mounted.current) {
+      setCurrentSlug(localStorage.getItem('currentSlug'))
+    } else {
+      mounted.current = true
+    }
+  }
+
+  useEffect(() => {
+    if (hash) {
+      setCurrentSlug(decodeURI(hash.slice(1)))
+    } else {
+      setCurrentSlug(anchors[0].slug)
+    }
+
+    window.addEventListener('storage', handler)
+    return () => {
+      window.removeEventListener('storage', handler)
+    }
+  }, [hash])
+
   const content = (
     <Fragment>
       {link && edit && (
@@ -115,9 +143,13 @@ export const Page: SFC<PageProps> = ({
     </Fragment>
   )
 
-  // 右侧锚点只跟踪 h2
-  const anchors = headings.filter(v => v.depth === 2)
-  const { pathname, hash } = location
+  const highlightAnchor = (slug: string) => {
+    if (currentSlug === slug) {
+      return { color: '#1890ff' }
+    } else {
+      return { color: 'rgba(0, 0, 0, .65' }
+    }
+  }
 
   return (
     <Main>
@@ -132,10 +164,11 @@ export const Page: SFC<PageProps> = ({
             <AnchorWrapper>
               <div>
                 {anchors.map(a => (
-                  <Anchor key={a.slug} hash={hash} slug={a.slug}>
+                  <Anchor key={a.slug} slug={a.slug} isCurrent={currentSlug === a.slug} depth={a.depth}>
                     <LinkWrapper
+                      className="page-anchor"
                       to={`${pathname}#${a.slug}`}
-                      style={{ color: hash === `#${a.slug}` ? '#1890ff' : 'rgba(0,0,0,.65)' }}
+                      style={highlightAnchor(a.slug)}
                     >
                       {a.value}
                     </LinkWrapper>
