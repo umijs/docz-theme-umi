@@ -24,7 +24,6 @@ const TableStyled = styled.table`
   border-collapse: collapse;
   border-style: hidden;
   border-radius: ${get('radii')};
-  font-size: 14px;
   color: ${get('colors.tableColor')};
 
   ${mq({

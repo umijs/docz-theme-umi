@@ -74,7 +74,8 @@ export const styles = {
     overflow-y: hidden;
     width: 100%;
     font-family: ${get('fonts.mono')};
-    font-size: 16px;
+    /* 和 ant-design 官网的表格字号保持一致 */
+    font-size: 13px;
     overflow-x: initial;
     display: block;
   `,
