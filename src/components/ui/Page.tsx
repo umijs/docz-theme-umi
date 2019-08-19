@@ -122,7 +122,7 @@ export const Page: SFC<PageProps> = ({
   useEffect(() => {
     if (hash) {
       setCurrentSlug(decodeURI(hash.slice(1)))
-    } else {
+    } else if (anchors.length) {
       setCurrentSlug(anchors[0].slug)
     }
 

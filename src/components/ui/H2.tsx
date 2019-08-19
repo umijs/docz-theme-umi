@@ -37,6 +37,11 @@ export const H2: SFC<React.HTMLAttributes<any>> = ({ children, ...props }) => {
   const isMounted = useRef(false)
 
   useEffect(() => {
+    // 空标题直接 return
+    if (!props.id) {
+      return
+    }
+
     // instantiate the scrollama
     const scroller = scrollama()
 
