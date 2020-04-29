@@ -5,7 +5,7 @@ import { useConfig, PlaygroundProps as BasePlaygroundProps } from 'docz'
 import { LiveProvider, LiveError, LivePreview } from 'react-live'
 import styled, { css } from 'styled-components'
 import rgba from 'polished/lib/color/rgba'
-import Resizable from 're-resizable'
+import { Resizable } from 're-resizable'
 import getter from 'lodash/get'
 
 import { Storage } from '@utils/storage'
